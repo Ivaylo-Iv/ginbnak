@@ -1,0 +1,43 @@
+#home {
+  background: linear-gradient(110deg, #16c680 35%, #aad8d0 70%);
+  padding: 5% 4% 5% 4%;
+}
+.cards {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem 7rem;
+}
+
+.card {
+  border: solid rgb(12, 135, 102) 2px;
+  display: flex;
+  align-items: center;
+  background: #dee1c3;
+  color: rgb(0, 0, 0);
+  padding: 2.5rem;
+  cursor: pointer;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.card > p {
+  font-size: 2.5rem;
+}
+.card > i {
+  font-size: 3rem;
+  margin-right: 2rem;
+}
+
+.icon {
+  margin-left: auto;
+}
+
+@media screen and (min-width: 920px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
