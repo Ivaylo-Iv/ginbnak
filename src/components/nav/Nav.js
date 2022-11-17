@@ -3,7 +3,9 @@ import logo from "../../assets/img/logo.svg";
 function Nav({ lang, setLang, navigate }) {
   window.addEventListener("scroll", () => {
     if (window.scrollY >= 10) {
+      document.getElementById("nav").classList.add("moved");
     } else {
+      document.getElementById("nav").classList.remove("moved");
     }
   });
   return (
@@ -26,7 +28,11 @@ function Nav({ lang, setLang, navigate }) {
         </div>
 
         <ul id="nav-links">
-          <li>
+          <li
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             {lang === "BG" ? "Начало" : lang === "DE" ? "Startseite" : "Home"}
           </li>
           <li>

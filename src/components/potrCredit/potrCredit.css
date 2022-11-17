@@ -1,0 +1,139 @@
+#credit-banner {
+  height: 500px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../assets/img/credit.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.mini-menu {
+  text-align: center;
+  padding: 0 10%;
+  margin-top: 5rem;
+}
+
+.mini-links {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.mini-links > li {
+  position: relative;
+  background: #16c680;
+  padding: 0.5rem 2rem;
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.mini-links > li > i {
+  margin-right: 1.5rem;
+  font-size: 2rem;
+  pointer-events: none;
+}
+.mini-links > li > span {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+.display {
+  position: absolute;
+  bottom: -40px;
+  color: #16c680 !important;
+  z-index: 100;
+  font-size: 3rem !important;
+  left: 0;
+  right: 0;
+}
+.none {
+  display: none;
+}
+
+.potr-section {
+  padding: 0 5%;
+  font-family: "Poppins", sans-serif;
+}
+
+.potr-section > h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+.potr-section > ul {
+  list-style: none;
+}
+.potr-section > ul > li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.potr-section > ul > li > i {
+  text-align: center;
+  width: 2rem;
+  font-size: 4rem;
+  margin-right: 5rem;
+}
+.potr-section > ul > li > div > h1 {
+  color: #16c680;
+  font-size: 2rem;
+}
+.potr-section > ul > li > div > p {
+  color: #000000;
+  font-size: 2rem;
+}
+
+#calc {
+  margin: 5rem 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#calc > h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.slider-wrapper {
+  display: flex;
+}
+
+#sliders .slider-wrapper > input {
+  display: block;
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 1100px) {
+  #credit-banner {
+    height: 400px;
+  }
+  .mini-links > li > span {
+    display: none;
+  }
+  .mini-links > li > i {
+    margin: 1rem;
+    font-size: 3rem;
+  }
+  .mini-links > li {
+    border-radius: 80px;
+  }
+}
+@media screen and (max-width: 600px) {
+  #credit-banner {
+    height: 300px;
+  }
+  .mini-links > li > span {
+    display: none;
+  }
+  .mini-links > li > i {
+    margin: 0.5rem;
+    font-size: 2rem;
+  }
+  .mini-links > li {
+    border-radius: 80px;
+  }
+}
