@@ -1,21 +1,38 @@
 import "./potrCredit.css";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function PotrCredit({ lang }) {
-  const [value, setValue] = useState(500);
-  const [months, setMonths] = useState(3);
+  const [value, setValue] = useState(1000);
+  const [months, setMonths] = useState(6);
   function creditCalc(value, months) {
-    console.log(months);
-    if (value < 10000) {
-      console.log(7);
-    } else if (value > 10000 && value < 50000) {
-      console.log(6);
-    } else if (value > 50000) {
-      console.log(5);
+    let interest;
+    if (value < 3000 && value) {
+      interest = 33.9;
+    } else if (value >= 3000 && value < 5000) {
+      interest = 23.9;
+    } else if (value >= 5000 && value < 10000) {
+      interest = 13.9;
+    } else if (value >= 10000 && value < 20000) {
+      interest = 9.9;
+    } else if (value >= 20000 && value < 30000) {
+      interest = 7.9;
+    } else if (value >= 30000 && value < 50000) {
+      interest = 7.4;
+    } else if (value >= 50000 && value <= 70000) {
+      interest = 6.9;
     }
-    const interest = {};
+    const percent = interest / 100;
+    const finalValue =
+      (Number(value) + Number(value) * percent) / Number(months);
+    const wholeValue = Number(value) + Number(value) * percent;
+    document.getElementById("wh-val").innerText = wholeValue;
+    document.getElementById("mth-pay").innerText = finalValue.toFixed(2);
+    document.getElementById("mth-pr").innerText = interest;
   }
+  useEffect(() => {
+    creditCalc(value, months);
+  });
 
   const [active, setActive] = useState({
     status: false,
@@ -107,20 +124,73 @@ function PotrCredit({ lang }) {
         </ul>
       </div>
       {Number(active.index) === 1 || active.index === null ? (
-        <div className="potr-section">1</div>
+        <div className="potr-section">
+          <h1 style={{ textAlign: "center" }}>
+            {lang === "EN"
+              ? "Consumer Credit"
+              : lang === "BG"
+              ? "Потребителски Кредит"
+              : "Verbraucherkredit"}
+          </h1>
+          <div>
+            <div id="potr-info">
+              {lang === "EN" ? (
+                <p></p>
+              ) : lang === "BG" ? (
+                <p
+                  style={{
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  Потребителският кредит е отложено потребление! Или казано
+                  иначе – “утрешното” потребление на стока, услуга или нещо
+                  друго, но днес. <br />
+                  Потреблението е в основата на този тип финансов продукт. Ако
+                  например изтеглите потребителски кредит, за да си купите
+                  пералня. Потребителският кредти е необезпечен Тоест няма залог
+                  на недвижимо или друго имущество. Стандартното обезпечение по
+                  потребителски кредити почти винаги е изискването за превод на
+                  работна заплата. <br />
+                  Допълнение към това може да е изискване за поръчителство. То
+                  само по себе си обаче се компроментира достатъчно вече в
+                  България и банките все повече държат именно на превода на
+                  трудово възнаграждение. Можем да кажем, че това е формалното
+                  обезпечение, на иначе необезпечения потребителски кредит.
+                  Лихвата по потребителския кредит не се променя Това е факт в
+                  мнозинството от случаите. Потребителските кредити почти винаги
+                  са с фиксирана лихва за определен срок (доста често това е
+                  целият срок на кредита). На пазара и то с много малки
+                  изключения, няма фиксирани лихви по ипотечните кредити. При
+                  потребителските ситуацията е по-различна. Банките тук държат
+                  да имат повече предсказуемост и лостове, с които да извлекат
+                  възвръщаемост. За това обаче трябва да видите повече в нашия
+                  коментар за кредити с фиксирана лихва. Потребителският кредит
+                  е необезпечен и е с доста по-кратък срок от ипотечните
+                  кредити. Като цяло максималният срок на пазара е 10 години.
+                  Въпросът е до каква степен съответните банки обвързват
+                  лихвените равнища, които прилагат със срока на кредита. Много
+                  често банките дават най-добрите лихви на кредити със срок от 5
+                  години. Затова и тук според нас важи логиката, че е важно как
+                  вноската кореспондира на вашия бюджет.
+                </p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </div>
+        </div>
       ) : null}
       {Number(active.index) === 2 ? (
         <div className="potr-section">
-          <h1>
+          <h1 style={{ textAlign: "center" }}>
             {lang === "EN"
               ? "Parameters"
               : lang === "BG"
               ? "Параметри"
               : "Parameter"}
-            :
           </h1>
-          <ul>
-            <li>
+          <div id="par-potr">
+            <div>
               <i className="fa-solid fa-calendar-days"></i>
               <div>
                 <h1>
@@ -134,8 +204,8 @@ function PotrCredit({ lang }) {
                     : "Von 3 bis 120 Monate"}
                 </p>
               </div>
-            </li>
-            <li>
+            </div>
+            <div>
               <i className="fa-sharp fa-solid fa-dollar-sign"></i>
               <div>
                 <h1>
@@ -149,8 +219,8 @@ function PotrCredit({ lang }) {
                   {lang === "EN" ? "Leva" : lang === "BG" ? "Лева" : "Leva"}
                 </p>
               </div>
-            </li>
-            <li>
+            </div>
+            <div>
               <i className="fa-solid fa-arrow-down"></i>
               <div>
                 <h1>
@@ -168,8 +238,8 @@ function PotrCredit({ lang }) {
                     : "150 Lv"}
                 </p>
               </div>
-            </li>
-            <li>
+            </div>
+            <div>
               <i className="fa-solid fa-arrow-up"></i>
               <div>
                 <h1>
@@ -187,8 +257,8 @@ function PotrCredit({ lang }) {
                     : "70.000 Lv"}
                 </p>
               </div>
-            </li>
-            <li>
+            </div>
+            <div>
               <i className="fa-solid fa-percent"></i>
               <div>
                 <h1>
@@ -206,33 +276,8 @@ function PotrCredit({ lang }) {
                     : "Festgelegt für die gesamte Laufzeit des Darlehens"}
                 </p>
               </div>
-            </li>
-            <li>
-              <i className="fa-solid fa-file-invoice"></i>
-              <div>
-                <h1>
-                  {lang === "EN"
-                    ? "Interest conditions"
-                    : lang === "BG"
-                    ? "Лихвени условия"
-                    : "Zinsen"}
-                </h1>
-                <p>
-                  {lang === "EN"
-                    ? "The price parameters are adjusted according to:"
-                    : lang === "BG"
-                    ? "Ценовите параметри са съобразени спрямо:"
-                    : "Die Preisparameter werden angepasst nach:"}
-                  <br />
-                  {lang === "EN"
-                    ? "- The amount of the loan"
-                    : lang === "BG"
-                    ? "- Размера на кредита"
-                    : "- Die Höhe des Darlehens"}
-                </p>
-              </div>
-            </li>
-            <li>
+            </div>
+            <div>
               <i className="fa-solid fa-file-invoice"></i>
               <div>
                 <h1>
@@ -265,8 +310,8 @@ function PotrCredit({ lang }) {
                   )}
                 </p>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -277,44 +322,85 @@ function PotrCredit({ lang }) {
         <div className="potr-section">4</div>
       ) : null}
       <div id="calc">
-        <h1>
-          {lang === "EN"
-            ? "Calculate the monthly payment"
-            : lang === "BG"
-            ? "Изчислете месечната вноска"
-            : "Berechnen Sie die monatliche Zahlung"}
-        </h1>
-        <div id="sliders">
-          <div className="slider-wrapper">
+        <div>
+          <h1>
+            {lang === "EN"
+              ? "Calculate the monthly payment"
+              : lang === "BG"
+              ? "Изчислете месечната вноска"
+              : "Berechnen Sie die monatliche Zahlung"}
+          </h1>
+          <div id="sliders">
+            <div className="slider-wrapper">
+              <p>
+                {lang === "EN"
+                  ? `I want to receive financing for ${value} BGN`
+                  : lang === "BG"
+                  ? `Искам да получа финансиране за ${value} BGN`
+                  : `Ich möchte eine Finanzierung erhalten für ${value} BGN`}
+              </p>
+              <input
+                type="range"
+                min="1000"
+                max="70000"
+                step="500"
+                onChange={(e) => {
+                  setValue(Number(e.target.value));
+                }}
+              />
+            </div>
+            <div className="slider-wrapper">
+              <p>
+                {lang === "EN"
+                  ? `Repayment term: ${months} months`
+                  : lang === "BG"
+                  ? `Срок на погасяване: ${months} месеца`
+                  : `Rückzahlungsfrist: ${months} monate`}
+              </p>
+              <input
+                defaultValue="6"
+                type="range"
+                min="6"
+                max="120"
+                onChange={(e) => {
+                  setMonths(Number(e.target.value));
+                }}
+              />
+            </div>
             <p>
               {lang === "EN"
-                ? `I want to receive financing for ${value} BGN`
+                ? `Monthly payment (${months} months)`
                 : lang === "BG"
-                ? `Искам да получа финансиране за ${value} BGN`
-                : `Ich möchte eine Finanzierung erhalten für ${value} BGN`}
+                ? `Месечна вноска (${months}мес.)`
+                : `Monatliche Bezahlung (${months} monate)`}{" "}
+              <strong>
+                <span id="mth-pay">89.17</span>
+                {" BGN"}
+              </strong>
             </p>
-            <input
-              type="range"
-              min="500"
-              max="70000"
-              onChange={(e) => {
-                setValue(Number(e.target.value));
-                creditCalc(value, months);
-              }}
-            />
-          </div>
-          <div className="slider-wrapper">
-            <p></p>
-            <input
-              defaultValue="6"
-              type="range"
-              min="6"
-              max="120"
-              onChange={(e) => {
-                setMonths(Number(e.target.value));
-                creditCalc(value, months);
-              }}
-            />
+            <p>
+              {lang === "EN"
+                ? `Interest rate ${months} months`
+                : lang === "BG"
+                ? `Лихвен процент (${months}мес.)`
+                : `Zinsrate ${months} monate`}{" "}
+              <strong>
+                <span id="mth-pr">89.17</span>
+                {" %"}
+              </strong>
+            </p>
+            <p>
+              {lang === "EN"
+                ? `Total amount due:`
+                : lang === "BG"
+                ? `Обща дължима сума:`
+                : `Fälliger Gesamtbetrag:`}
+              <strong>
+                {" "}
+                <span id="wh-val">1339</span>
+                {" BGN"}
+              </strong>
+            </p>
           </div>
         </div>
       </div>
