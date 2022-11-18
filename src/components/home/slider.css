@@ -1,6 +1,7 @@
 /* Slideshow */
 
 .slideshow {
+  border-radius: 0 0 80px 80px;
   margin: 0 auto;
   overflow: hidden;
   max-width: 100%;
@@ -46,14 +47,35 @@
 
 /* My css / Slider CSS */
 #sl-1 {
-  background: url("../../assets/img/mn.jpg") no-repeat center center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/img/mn.jpg");
+  /* background: no-repeat center center; */
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #sl-2 {
-  background: url("../../assets/img/mn2.jpg") no-repeat center center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/img/mn2.jpg");
+  /* background: no-repeat center center; */
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #sl-3 {
-  background: url("../../assets/img/sea.jpg") no-repeat center center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/img/sea.jpg");
+  /* background: no-repeat center center; */
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 750px) {
+  .slide {
+    display: inline-block;
+
+    height: 330px;
+    width: 100%;
+  }
 }
